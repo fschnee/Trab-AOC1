@@ -7,6 +7,10 @@ f_randompopulate:
 	lw $t2, 4($a0) # frame2addr (fim do loop)
 	lb $t3, 20($a0) # width
 	lb $t4, 22($a0) # height
+	
+	# Coisas para gerar numero aleatorio
+	li $a1, 2
+	li $v0, 42
 
 loop:
 	# se (endereçoatual == endereçodoframe2) acabe o loop
@@ -14,8 +18,6 @@ loop:
 	
 	# gera um numero inteiro aleatorio no intervalo
 	# [0, $(a1) ), ou seja [0, 1] nesse caso
-	li $a1, 2
-	li $v0, 42
 	syscall
 	
 	# se o numero é 1 pinta o pixel, senão pula pro label continua

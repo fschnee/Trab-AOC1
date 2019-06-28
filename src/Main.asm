@@ -6,8 +6,8 @@
 	frame2addr: .space 4         # lw 4(structaddr)
 	cor: .word 0xffffff          # lw 8(structaddr)
 	tam: .space 2                # lh 12(structaddr)
-	pixelwidth: .byte 8          # lb 14(structaddr)
-	pixelheight: .byte 8         # lb 15(structaddr)
+	pixelwidth: .byte 32         # lb 14(structaddr)
+	pixelheight: .byte 32        # lb 15(structaddr)
 	displaywidth: .half 512      # lh 16(structaddr)
 	displayheight: .half 256     # lh 18(structaddr)
 	realwidth: .space 2          # lh 20(structaddr)
@@ -18,4 +18,24 @@
 main:
 	la $a0, frame1addr
 	jal f_initstruct
-	jal f_randompopulate
+	#jal f_randompopulate
+
+loop:
+	# Sleep de 500 ms
+	li $a0, 500
+	li $v0, 32
+	syscall
+	
+	la $a0, frame1addr
+	jal f_cpyframe1toframe2
+	#jal f_makenewframe
+	
+	# Se f_makenewframe fez um frame completamente morto
+	# termina a execução
+	#beq $a0, $zero, fim
+	j loop
+
+fim:
+	# Terminar execução do programa
+	li $v0, 10
+	syscall
