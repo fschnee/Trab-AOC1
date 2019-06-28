@@ -22,6 +22,7 @@ Sabendo disso, o jogo considera quatro regras básicas:
 
 [1]: resource/TrabalhoPratico_Final_2019-1.pdf
 [2]: https://pt.wikipedia.org/wiki/Jogo_da_vida
+
 ---
 
 ### Implementação
@@ -38,6 +39,7 @@ acordo com os campos definidos na parte de dados do [`Main.asm`][]
 (Certifique-se que está conectada ao Mars).
 
 [`Main.asm`]: src/Main.asm
+
 ---
 
 ### Execução
