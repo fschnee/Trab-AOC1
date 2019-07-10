@@ -6,6 +6,7 @@ f_initstruct:
 	lb $t3, 15($a0) # unitheight
 	lh $t4, 16($a0) # displaywidth
 	lh $t5, 18($a0) # displayheight
+	sw $t1, 4($a0)	# inverte o endereço dos frames na memoria
 
 	# Pega o tamanho real do grid
 	div $t4, $t2
@@ -24,6 +25,6 @@ f_initstruct:
 	mult $t8, $t6
 	mflo $t7
 	add $t9, $t1, $t7
-	sw $t9, 4($a0) # Guarda o endereço do segundo frame
+	sw $t9, 0($a0) # Guarda o endereço do segundo frame
 	
 	jr $ra

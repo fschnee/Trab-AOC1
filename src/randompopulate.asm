@@ -5,8 +5,8 @@ f_randompopulate:
 	lw $t0, 8($a0) # cor
 	lw $t1, 0($a0) # frame1addr
 	lw $t2, 4($a0) # frame2addr (fim do loop)
-	lb $t3, 20($a0) # width
-	lb $t4, 22($a0) # height
+	lh $t3, 12($a0) # quantidade de pixels
+	li $t4, 0 # contador
 	
 	# Coisas para gerar numero aleatorio
 	li $a1, 2
@@ -14,7 +14,7 @@ f_randompopulate:
 
 loop:
 	# se (endereçoatual == endereçodoframe2) acabe o loop
-	beq $t1, $t2, end
+	beq $t4, $t3, end
 	
 	# gera um numero inteiro aleatorio no intervalo
 	# [0, $(a1) ), ou seja [0, 1] nesse caso
@@ -25,6 +25,7 @@ loop:
 	sw $t0, 0($t1)
 continua:
 	addi $t1, $t1, 4
+	addi $t4, $t4, 1
 	j loop
 	
 end:
