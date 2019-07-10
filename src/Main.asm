@@ -16,19 +16,16 @@
 .text
 .globl main
 main:
+	jal f_menu
 	la $a0, frame1addr
 	jal f_initstruct
-	#jal f_randompopulate
+	jal f_randompopulate
 
 loop:
-	# Sleep de 500 ms
-	li $a0, 500
-	li $v0, 32
-	syscall
-	
 	la $a0, frame1addr
+		
 	jal f_cpyframe1toframe2
-	#jal f_makenewframe
+	jal f_makenewframe
 	
 	# Se f_makenewframe fez um frame completamente morto
 	# termina a execução
